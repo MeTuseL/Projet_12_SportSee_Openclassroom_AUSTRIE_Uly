@@ -1,17 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Dashboard from './pages/dashboard'
+import NavigationBar from './components/navigationBar'
+import { Link } from 'react-router-dom'
+import styles from './css/body.module.css'
+import './css/global.css'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <Router>
+      <div className={styles.container}>
+        {/*add a div for center body */}
+        <NavigationBar />
+        <main>
+          <Routes>
+            {/* redirect to /tableau-bord/:idUser when user goes to / */}
+            <Route path="/" element={<Navigate to="/tableau-bord/12" />} />
+            <Route path="/tableau-bord/:idUser" element={<Dashboard />} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h2>404 Page not found</h2>
+                  <Link to="/">Retourner au tableau de bord</Link>
+                </div>
+              }
+            />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  </React.StrictMode>,
+)
