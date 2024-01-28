@@ -4,8 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 import UserMockService from '../../mocks/services/userData'
 import styles from './css/dashboard.module.css'
 
-import SimpleBarChart from '../../components/simpleBarChart'
-import SimpleAreaChart from '../../components/simpleLineChart'
+import ActivityChart from '../../components/ActivityChart'
+import AveSessionsChart from '../../components/AveSessionsChart'
+import PerformanceChart from '../../components/PerformanceChart'
+import ScoreChart from '../../components/ScoreChart'
+import SpeechPresentation from '../../components/SpeechPresentation'
 
 function Dashboard() {
   //
@@ -40,7 +43,7 @@ function Dashboard() {
     // UserMockService.getUserPerformance(idUser) === undefined
     //   ? navigate('/404')
     //   : setUserPerformance(UserMockService.getUserPerformance(idUser))
-  }, [])
+  }, [idUser, navigate])
 
   //     const [userData,setUserData] = useState(null)
   //   useEffect(() => {
@@ -53,20 +56,16 @@ function Dashboard() {
     userInfos && (
       <div className={styles.container}>
         <header>
-          <div className={styles.container_header}>
-            <h1
-              className={styles.container_header__title}
-            >{`Bonjour ${userInfos.userInfos.lastName}`}</h1>
-            <p className={styles.container_header__subtitle}>
-              Félicitation ! Vous avez explosé vos objectifs hier 👏
-            </p>
-          </div>
+          <SpeechPresentation
+            data={userInfos}
+            speech="Félicitation ! Vous avez explosé vos objectifs hier 👏"
+          />
         </header>
         <section>
           <div className={styles.container_section}>
             <div style={{ height: '400px' }}>
-              <SimpleBarChart
-                data={userActivity.sessions}
+              <ActivityChart
+                data={userActivity}
                 barOneUnitName="Poids"
                 barOneUnit="kg"
                 barTwoUnitName="Calories brûlées"
@@ -76,12 +75,19 @@ function Dashboard() {
             </div>
             <div style={{ height: '100px', margin: '50px' }}></div>
             <div style={{ height: '400px' }}>
-              <SimpleAreaChart
-                data={userAverageSessions.sessions}
+              <AveSessionsChart
+                data={userAverageSessions}
                 titleGraph="Durée moyenne des sessions"
               />
             </div>
             <div style={{ height: '100px', margin: '50px' }}></div>
+            <div style={{ height: '400px' }}>
+              <PerformanceChart data={userPerformance} />
+            </div>
+            <div style={{ height: '100px', margin: '50px' }}></div>
+            <div style={{ height: '400px' }}>
+              <ScoreChart data={userInfos} />
+            </div>
           </div>
         </section>
         <aside>
