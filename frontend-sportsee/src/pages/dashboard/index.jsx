@@ -1,14 +1,21 @@
 // import UserFetchService from '../../services/userData'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import UserMockService from '../../mocks/services/userData'
+
+import mockService from '../../services/mockService'
+
 import styles from './css/dashboard.module.css'
+import caloriesIcon from '../../assets/svg/calories-icon.svg'
+import carbsIcon from '../../assets/svg/carbs-icon.svg'
+import fatIcon from '../../assets/svg/fat-icon.svg'
+import proteinIcon from '../../assets/svg/protein-icon.svg'
 
 import ActivityChart from '../../components/ActivityChart'
 import AveSessionsChart from '../../components/AveSessionsChart'
 import PerformanceChart from '../../components/PerformanceChart'
 import ScoreChart from '../../components/ScoreChart'
 import SpeechPresentation from '../../components/SpeechPresentation'
+import NutrientCard from '../../components/NutrientCard'
 
 function Dashboard() {
   //
@@ -20,29 +27,29 @@ function Dashboard() {
   const [userPerformance, setUserPerformance] = useState(null)
 
   useEffect(() => {
-    if (!UserMockService.getUserInfo(idUser)) {
+    if (!mockService.getUserInfo(idUser)) {
       navigate('/404')
     } else {
-      setUserInfos(UserMockService.getUserInfo(idUser))
-      setUserActivity(UserMockService.getUserActivity(idUser))
-      setUserAverageSessions(UserMockService.getUserAverageSessions(idUser))
-      setUserPerformance(UserMockService.getUserPerformance(idUser))
+      setUserInfos(mockService.getUserInfo(idUser))
+      setUserActivity(mockService.getUserActivity(idUser))
+      setUserAverageSessions(mockService.getUserAverageSessions(idUser))
+      setUserPerformance(mockService.getUserPerformance(idUser))
     }
-    // UserMockService.getUserInfo(idUser) === undefined
+    // mockService.getUserInfo(idUser) === undefined
     //   ? navigate('/404')
-    //   : setUserInfos(UserMockService.getUserInfo(idUser))
+    //   : setUserInfos(mockService.getUserInfo(idUser))
 
-    // UserMockService.getUserActivity(idUser) === undefined
+    // mockService.getUserActivity(idUser) === undefined
     //   ? navigate('/404')
-    //   : setUserActivity(UserMockService.getUserActivity(idUser))
+    //   : setUserActivity(mockService.getUserActivity(idUser))
 
-    // UserMockService.getUserAverageSessions(idUser) === undefined
+    // mockService.getUserAverageSessions(idUser) === undefined
     //   ? navigate('/404')
-    //   : setUserAverageSessions(UserMockService.getUserAverageSessions(idUser))
+    //   : setUserAverageSessions(mockService.getUserAverageSessions(idUser))
 
-    // UserMockService.getUserPerformance(idUser) === undefined
+    // mockService.getUserPerformance(idUser) === undefined
     //   ? navigate('/404')
-    //   : setUserPerformance(UserMockService.getUserPerformance(idUser))
+    //   : setUserPerformance(mockService.getUserPerformance(idUser))
   }, [idUser, navigate])
 
   //     const [userData,setUserData] = useState(null)
@@ -51,7 +58,24 @@ function Dashboard() {
   //       console.log(activity)
   //     })
   //   }, [])
-
+  const dataNutrients = [
+    {
+      name: 'Calories',
+      picture: caloriesIcon,
+    },
+    {
+      name: 'Proteines',
+      picture: proteinIcon,
+    },
+    {
+      name: 'Glucides',
+      picture: carbsIcon,
+    },
+    {
+      name: 'Lipides',
+      picture: fatIcon,
+    },
+  ]
   return (
     userInfos && (
       <div className={styles.container}>
@@ -91,7 +115,16 @@ function Dashboard() {
           </div>
         </section>
         <aside>
-          <div className={styles.container_aside}></div>
+          <div className={styles.container_aside}>
+            {Object.values(userInfos.keyData).map((nutrient, index) => (
+              <NutrientCard
+                key={`${dataNutrients[index].name}-${index}`}
+                picture={dataNutrients[index].picture}
+                name={dataNutrients[index].name}
+                nutrientCount={nutrient}
+              />
+            ))}
+          </div>
         </aside>
       </div>
     )
