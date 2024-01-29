@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import mockService from '../../services/mockService'
+import apiService from '../../services/apiService'
 
 import styles from './css/dashboard.module.css'
 import caloriesIcon from '../../assets/svg/calories-icon.svg'
@@ -25,39 +26,36 @@ function Dashboard() {
   const [userActivity, setUserActivity] = useState(null)
   const [userAverageSessions, setUserAverageSessions] = useState(null)
   const [userPerformance, setUserPerformance] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!mockService.getUserInfo(idUser)) {
-      navigate('/404')
-    } else {
-      setUserInfos(mockService.getUserInfo(idUser))
-      setUserActivity(mockService.getUserActivity(idUser))
-      setUserAverageSessions(mockService.getUserAverageSessions(idUser))
-      setUserPerformance(mockService.getUserPerformance(idUser))
-    }
-    // mockService.getUserInfo(idUser) === undefined
-    //   ? navigate('/404')
-    //   : setUserInfos(mockService.getUserInfo(idUser))
+    //mock service
+    // !mockService.getUserInfo(idUser) && navigate('/404')
+    //
+    //   setUserInfos(mockService.getUserInfo(idUser))
+    //   setUserActivity(mockService.getUserActivity(idUser))
+    //   setUserAverageSessions(mockService.getUserAverageSessions(idUser))
+    //   setUserPerformance(mockService.getUserPerformance(idUser))
+    // }
 
-    // mockService.getUserActivity(idUser) === undefined
-    //   ? navigate('/404')
-    //   : setUserActivity(mockService.getUserActivity(idUser))
+    //api service
+    Promise.all([
+      apiService.getUserInfos(idUser),
+      apiService.getUserActivity(idUser),
+      apiService.getUserAverageSessions(idUser),
+      apiService.getUserPerformance(idUser),
+    ])
+      .then(([dataInfos, dataActivity, dataAveSessions, dataPerformance]) => {
+        !dataInfos && navigate('/404')
 
-    // mockService.getUserAverageSessions(idUser) === undefined
-    //   ? navigate('/404')
-    //   : setUserAverageSessions(mockService.getUserAverageSessions(idUser))
-
-    // mockService.getUserPerformance(idUser) === undefined
-    //   ? navigate('/404')
-    //   : setUserPerformance(mockService.getUserPerformance(idUser))
+        setUserInfos(dataInfos)
+        setUserActivity(dataActivity)
+        setUserAverageSessions(dataAveSessions)
+        setUserPerformance(dataPerformance)
+      })
+      .finally(() => setIsLoading(false))
   }, [idUser, navigate])
 
-  //     const [userData,setUserData] = useState(null)
-  //   useEffect(() => {
-  //     UserFetchService.getUserInfo('14').then((activity) => {
-  //       console.log(activity)
-  //     })
-  //   }, [])
   const dataNutrients = [
     {
       name: 'Calories',
@@ -76,6 +74,11 @@ function Dashboard() {
       picture: fatIcon,
     },
   ]
+
+  if (isLoading) {
+    return <h2>Loading...</h2>
+  }
+
   return (
     userInfos && (
       <div className={styles.container}>
@@ -116,12 +119,12 @@ function Dashboard() {
         </section>
         <aside>
           <div className={styles.container_aside}>
-            {Object.values(userInfos.keyData).map((nutrient, index) => (
+            {Object.values(userInfos.keyData).map((nutrientValue, index) => (
               <NutrientCard
                 key={`${dataNutrients[index].name}-${index}`}
                 picture={dataNutrients[index].picture}
                 name={dataNutrients[index].name}
-                nutrientCount={nutrient}
+                nutrientCount={nutrientValue}
               />
             ))}
           </div>
