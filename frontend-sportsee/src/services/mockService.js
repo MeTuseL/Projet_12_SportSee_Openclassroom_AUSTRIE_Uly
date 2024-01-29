@@ -3,9 +3,9 @@ import {
   USER_ACTIVITY,
   USER_AVERAGE_SESSIONS,
   USER_PERFORMANCE,
-} from '../../mocks/data'
+} from '../__mocks__/data'
 
-const UserMockService = {
+const mockService = {
   getUserInfo: (idUser) => {
     const data = USER_MAIN_DATA.find((d) => d.id === parseInt(idUser))
     return data
@@ -25,4 +25,4 @@ const UserMockService = {
     return data
   },
 }
-export default UserMockService
+export default mockService

@@ -4,7 +4,7 @@ function NutrientCard(props) {
   const { picture, name, nutrientCount } = props
   return (
     <div>
-      <img src={picture} alt="" />
+      <img src={picture} alt={name} />
       <div>
         <span>{nutrientCount}</span>
         <span>{name}</span>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const UserFetchService = {
+const apiService = {
   getUserInfos: async (userId) => {
     try {
       const response = await axios(`http://localhost:3000/user/${userId}`)
@@ -52,4 +52,4 @@ const UserFetchService = {
     }
   },
 }
-export default UserFetchService
+export default apiService

@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from 'recharts'
 
-import CustomToolTip from './CustomToolTip'
+import CustomToolTip from './utils/CustomToolTip'
 
 function PerformanceChart(props) {
   const { data } = props

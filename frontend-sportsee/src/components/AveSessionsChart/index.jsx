@@ -10,8 +10,8 @@ import {
 
 import PropTypes from 'prop-types'
 
-import CustomCursor from './CustomCursor'
-import CustomToolTip from './CustomToolTip'
+import CustomCursor from './utils/CustomCursor'
+import CustomToolTip from './utils/CustomToolTip'
 
 function AveSessionsChart(props) {
   const { data, titleGraph } = props

@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 import Dashboard from './pages/dashboard'
-import NavigationBar from './components/navigationBar'
+import NavigationBar from './components/NavigationBar'
 import { Link } from 'react-router-dom'
 import styles from './css/body.module.css'
 import './css/global.css'

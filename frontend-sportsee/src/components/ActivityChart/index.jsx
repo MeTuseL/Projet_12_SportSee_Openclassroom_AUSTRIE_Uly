@@ -11,7 +11,7 @@ import {
 
 import PropTypes from 'prop-types'
 
-import CustomToolTip from './customToolTip'
+import CustomToolTip from './utils/customToolTip'
 
 function ActivityChart(props) {
   const {

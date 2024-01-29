@@ -12,7 +12,7 @@ function CustomCursor(props) {
       y={y}
       width={width}
       height={height}
-      style={{ transition: 'all ease-out 0.5s' }}
+      style={{ transition: 'all ease-out 0.3s' }}
     />
   )
 }
