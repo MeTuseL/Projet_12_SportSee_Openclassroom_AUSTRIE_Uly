@@ -46,5 +46,8 @@ router.get('/user/:id/performance', (req, res) => {
     return handleNoUserData(res, userData)
 })
 
+router.get('/', (req,res) => {
+    res.status(200).send('SportSee Backend API')
+})
 
 module.exports = router
