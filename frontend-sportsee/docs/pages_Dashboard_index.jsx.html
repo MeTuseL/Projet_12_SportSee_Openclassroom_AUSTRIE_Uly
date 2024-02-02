@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> pages/Dashboard/index.jsx</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee App - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Components</h2><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AveSessionsChart.html">AveSessionsChart</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="NutrientCard.html">NutrientCard</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li><li><a href="SpeechPresentation.html">SpeechPresentation</a></li></ul></div><div class="category"><h2>Components/Utils</h2><h3>Components</h3><ul><li><a href="CustomCursorAveSessions.html">CustomCursorAveSessions</a></li><li><a href="CustomKindLabel.html">CustomKindLabel</a></li><li><a href="CustomLegendScore.html">CustomLegendScore</a></li><li><a href="CustomTooltipActivity.html">CustomTooltipActivity</a></li><li><a href="CustomTooltipAveSessions.html">CustomTooltipAveSessions</a></li><li><a href="CustomTooltipPerformance.html">CustomTooltipPerformance</a></li></ul></div><div class="category"><h2>Pages</h2><h3>Components</h3><ul><li><a href="Dashboard.html">Dashboard</a></li></ul></div><div class="category"><h2>Router</h2><h3>Global</h3><ul><li><a href="global.html#root">root</a></li></ul></div><div class="category"><h2>Services</h2><h3>Namespaces</h3><ul><li><a href="ApiService.html">ApiService</a></li><li><a href="FormatDataService.html">FormatDataService</a></li><li><a href="MockService.html">MockService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>pages/Dashboard/index.jsx</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+
+// import mockService from '../../services/mockService'
+import apiService from '../../services/apiService'
+import formatDataService from '../../services/formatDataService'
+
+import styles from './styles/dashboard.module.scss'
+
+import ActivityChart from '../../components/ActivityChart'
+import AveSessionsChart from '../../components/AveSessionsChart'
+import PerformanceChart from '../../components/PerformanceChart'
+import ScoreChart from '../../components/ScoreChart'
+import SpeechPresentation from '../../components/SpeechPresentation'
+import NutrientCard from '../../components/NutrientCard'
+
+/**
+ * This component renders a user profile page with this data.
+ *
+ * @category Pages
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a user profile page with this data.
+ */
+function Dashboard() {
+  document.title = 'Dashboard - SportSee'
+  const { idUser } = useParams()
+  const navigate = useNavigate()
+  const [userInfos, setUserInfos] = useState(null)
+  const [userActivity, setUserActivity] = useState(null)
+  const [userAverageSessions, setUserAverageSessions] = useState(null)
+  const [userPerformance, setUserPerformance] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    //mock service
+    // !(mockService.getUserInfo(idUser)) &amp;&amp; navigate('/404')
+    //
+    //   setUserInfos(mockService.getUserInfo(idUser))
+    //   setUserActivity(mockService.getUserActivity(idUser))
+    //   setUserAverageSessions(mockService.getUserAverageSessions(idUser))
+    //   setUserPerformance(mockService.getUserPerformance(idUser))
+    // }
+
+    //api service
+    Promise.all([
+      apiService.getUserInfos(idUser),
+      apiService.getUserActivity(idUser),
+      apiService.getUserAverageSessions(idUser),
+      apiService.getUserPerformance(idUser),
+    ])
+      .then(([dataInfos, dataActivity, dataAveSessions, dataPerformance]) => {
+        !dataInfos &amp;&amp; navigate('/404')
+
+        setUserInfos(dataInfos)
+        setUserActivity(dataActivity)
+        setUserAverageSessions(dataAveSessions)
+        setUserPerformance(dataPerformance)
+      })
+      .finally(() => setIsLoading(false))
+  }, [idUser, navigate])
+
+  if (isLoading) {
+    return &lt;h2>Loading...&lt;/h2>
+  }
+
+  return (
+    userInfos &amp;&amp; (
+      &lt;div className={styles.container}>
+        &lt;header>
+          &lt;SpeechPresentation
+            data={userInfos}
+            speech="Félicitation ! Vous avez explosé vos objectifs hier 👏"
+          />
+        &lt;/header>
+        &lt;section>
+          &lt;div className={styles.container__section}>
+            &lt;div className={styles.container__section__activity}>
+              &lt;ActivityChart data={userActivity} />
+            &lt;/div>
+            &lt;div className={styles.container__section__aveSessions}>
+              &lt;AveSessionsChart data={userAverageSessions} />
+            &lt;/div>
+            &lt;div className={styles.container__section__performance}>
+              &lt;PerformanceChart data={userPerformance} />
+            &lt;/div>
+            &lt;div className={styles.container__section__score}>
+              &lt;ScoreChart data={userInfos} />
+            &lt;/div>
+          &lt;/div>
+        &lt;/section>
+        &lt;aside>
+          &lt;div className={styles.container__aside}>
+            {Object.values(userInfos.keyData).map((nutrientValue, index) => (
+              &lt;NutrientCard
+                key={`${formatDataService.formatNutrient(index).name}-${index}`}
+                picture={formatDataService.formatNutrient(index).picture}
+                name={formatDataService.formatNutrient(index).name}
+                nutrientQuantity={`${nutrientValue.toLocaleString()}${formatDataService.formatNutrient(index).unit}`}
+              />
+            ))}
+          &lt;/div>
+        &lt;/aside>
+      &lt;/div>
+    )
+  )
+}
+export default Dashboard
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

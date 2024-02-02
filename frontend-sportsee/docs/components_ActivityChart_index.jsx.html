@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/ActivityChart/index.jsx</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee App - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Components</h2><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AveSessionsChart.html">AveSessionsChart</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="NutrientCard.html">NutrientCard</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li><li><a href="SpeechPresentation.html">SpeechPresentation</a></li></ul></div><div class="category"><h2>Components/Utils</h2><h3>Components</h3><ul><li><a href="CustomCursorAveSessions.html">CustomCursorAveSessions</a></li><li><a href="CustomKindLabel.html">CustomKindLabel</a></li><li><a href="CustomLegendScore.html">CustomLegendScore</a></li><li><a href="CustomTooltipActivity.html">CustomTooltipActivity</a></li><li><a href="CustomTooltipAveSessions.html">CustomTooltipAveSessions</a></li><li><a href="CustomTooltipPerformance.html">CustomTooltipPerformance</a></li></ul></div><div class="category"><h2>Pages</h2><h3>Components</h3><ul><li><a href="Dashboard.html">Dashboard</a></li></ul></div><div class="category"><h2>Router</h2><h3>Global</h3><ul><li><a href="global.html#root">root</a></li></ul></div><div class="category"><h2>Services</h2><h3>Namespaces</h3><ul><li><a href="ApiService.html">ApiService</a></li><li><a href="FormatDataService.html">FormatDataService</a></li><li><a href="MockService.html">MockService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/ActivityChart/index.jsx</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
+import PropTypes from 'prop-types'
+import CustomTooltipActivity from './utils/CustomTooltipActivity'
+import './styles/activityChart.scss'
+import formatDataService from '../../services/formatDataService'
+
+/**
+ * This component renders a activity chart using recharts.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a activity chart using recharts.
+ */
+function ActivityChart(props) {
+  const { data } = props
+
+  return (
+    &lt;ResponsiveContainer width="100%" height="100%">
+      &lt;h2 className="titleActivityChart">Activité quotidienne&lt;/h2>
+      &lt;BarChart
+        data={data.sessions}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+        barSize={7}
+        barGap={8}
+      >
+        &lt;CartesianGrid
+          strokeDasharray="3 3"
+          horizontal={true}
+          vertical={false}
+          stroke="var(--text-color-light-4)"
+        />
+        &lt;XAxis
+          dataKey="day"
+          tickMargin={15}
+          tickLine={false}
+          tickFormatter={formatDataService.formatDate}
+          // scale="point"
+          // padding={{ left: 10, right: 10 }}
+          tick={{ fill: 'var(--text-color-light-3)' }}
+          stroke="var(--text-color-light-4)"
+        />
+        &lt;YAxis
+          yAxisId="kilogram"
+          domain={['dataMin - 2', 'dataMax + 1']}
+          orientation="right"
+          tickMargin={30}
+          tickCount={3}
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: 'var(--text-color-light-3)' }}
+        />
+        &lt;YAxis hide={true} yAxisId="calories" />
+        &lt;Tooltip
+          content={&lt;CustomTooltipActivity />}
+          cursor={{ fill: 'var(--background-color-light-2)' }}
+          wrapperStyle={{ left: '7%', bottom: '0px' }}
+        />
+        &lt;Legend
+          verticalAlign="top"
+          align="right"
+          iconType="circle"
+          iconSize="9"
+          height={80}
+        />
+        &lt;Bar
+          dataKey="kilogram"
+          yAxisId="kilogram"
+          name="Poids (kg)"
+          fill="var(--text-color-dark-2)"
+          radius={[3.5, 3.5, 0, 0]}
+        />
+        &lt;Bar
+          dataKey="calories"
+          yAxisId="calories"
+          name="Calories brûlées (kCal)"
+          fill="var(--primary-color-dark)"
+          radius={[3.5, 3.5, 0, 0]}
+        />
+      &lt;/BarChart>
+    &lt;/ResponsiveContainer>
+  )
+}
+ActivityChart.propTypes = {
+  /**
+   * Activity data of user -> From the Api data.
+   */
+  data: PropTypes.object.isRequired,
+}
+export default ActivityChart
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

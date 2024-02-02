@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> services/formatDataService.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee App - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Components</h2><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AveSessionsChart.html">AveSessionsChart</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="NutrientCard.html">NutrientCard</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li><li><a href="SpeechPresentation.html">SpeechPresentation</a></li></ul></div><div class="category"><h2>Components/Utils</h2><h3>Components</h3><ul><li><a href="CustomCursorAveSessions.html">CustomCursorAveSessions</a></li><li><a href="CustomKindLabel.html">CustomKindLabel</a></li><li><a href="CustomLegendScore.html">CustomLegendScore</a></li><li><a href="CustomTooltipActivity.html">CustomTooltipActivity</a></li><li><a href="CustomTooltipAveSessions.html">CustomTooltipAveSessions</a></li><li><a href="CustomTooltipPerformance.html">CustomTooltipPerformance</a></li></ul></div><div class="category"><h2>Pages</h2><h3>Components</h3><ul><li><a href="Dashboard.html">Dashboard</a></li></ul></div><div class="category"><h2>Router</h2><h3>Global</h3><ul><li><a href="global.html#root">root</a></li></ul></div><div class="category"><h2>Services</h2><h3>Namespaces</h3><ul><li><a href="ApiService.html">ApiService</a></li><li><a href="FormatDataService.html">FormatDataService</a></li><li><a href="MockService.html">MockService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>services/formatDataService.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import caloriesIcon from '../assets/svg/nutrientIcons/calories-icon.svg'
+import carbsIcon from '../assets/svg/nutrientIcons/carbs-icon.svg'
+import fatIcon from '../assets/svg/nutrientIcons/fat-icon.svg'
+import proteinIcon from '../assets/svg/nutrientIcons/protein-icon.svg'
+
+/**
+ * An object that contains a list of formatted data services.
+ *
+ * @category Services
+ * @namespace FormatDataService
+ */
+const formatDataService = {
+  /**
+   * This function will retrieve the day of the month from the date data of the user's activity.
+   *
+   * @memberOf FormatDataService
+   * @param {string} value
+   * @returns  { number } A number representing the day of the month for this date according to Coordinated Universal Time (UTC).
+   */
+  formatDate: (value) => {
+    return new Date(value).getUTCDate()
+  },
+  /**
+   * This function will retrieve the first letter of the day data of the user's average sessions.
+   *
+   * @memberOf FormatDataService
+   * @param {number} value
+   * @returns  { string } A string of the label of the day corresponding to its index.
+   */
+  formatDay: (value) => {
+    const listLabelDay = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+    return listLabelDay[value - 1]
+  },
+  /**
+   * This function will translate the kind data of the user's performance.
+   *
+   * @memberOf FormatDataService
+   * @param {number} value
+   * @returns  { string } A string of the translated kind corresponding to its index.
+   */
+  formatKind: (value) => {
+    const translatedKind = {
+      1: 'Cardio',
+      2: 'Energie',
+      3: 'Endurance',
+      4: 'Force',
+      5: 'Vitesse',
+      6: 'Intensité',
+    }
+    return translatedKind[value]
+  },
+  /**
+   * This function will transform the score data of the user information into a percentage.
+   *
+   * @memberOf FormatDataService
+   * @param {object} data
+   * @returns  { object } An object of the score percentage data from the user information.
+   */
+  formatScore: (data) => {
+    const formatScore = !data.score ? data.todayScore : data.score
+    const pourcentScore = formatScore * 100
+    const dataPourcentScore = { value: pourcentScore }
+
+    return dataPourcentScore
+  },
+  /**
+   * This function will retrieve the translated nutrient, its unit, and picture data from the quantity nutrient index.
+   *
+   * @memberOf FormatDataService
+   * @param {number} value
+   * @returns  { object } An object containing the translated nutrient, its unit, and picture data corresponding to its index.
+   */
+  formatNutrient: (value) => {
+    const dataNutrients = [
+      {
+        name: 'Calories',
+        unit: 'kcal',
+        picture: caloriesIcon,
+      },
+      {
+        name: 'Proteines',
+        unit: 'g',
+        picture: proteinIcon,
+      },
+      {
+        name: 'Glucides',
+        unit: 'g',
+        picture: carbsIcon,
+      },
+      {
+        name: 'Lipides',
+        unit: 'g',
+        picture: fatIcon,
+      },
+    ]
+
+    return dataNutrients[value]
+  },
+}
+export default formatDataService
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
