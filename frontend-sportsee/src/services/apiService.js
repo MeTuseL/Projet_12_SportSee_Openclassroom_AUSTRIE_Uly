@@ -4,11 +4,13 @@ import axios from 'axios'
  * An object that contains a list of api services.
  *
  * @category Services
+ * @namespace ApiService
  */
 const apiService = {
   /**
    * This function will fetch data from an API and then return user information for the specified user ID.
    *
+   * @memberOf ApiService
    * @param {number} userId
    * @returns  { Promise<object> } A promise that contains user information for the specified user ID.
    */
@@ -26,6 +28,7 @@ const apiService = {
   /**
    * This function will fetch data from an API and then return user activity for the specified user ID.
    *
+   * @memberOf ApiService
    * @param {number} userId
    * @returns  { Promise<object> } A promise that contains user activity for the specified user ID.
    */
@@ -45,6 +48,7 @@ const apiService = {
   /**
    * This function will fetch data from an API and then return user average sessions for the specified user ID.
    *
+   * @memberOf ApiService
    * @param {number} userId
    * @returns  { Promise<object> } A promise that contains user average sessions for the specified user ID.
    */
@@ -64,6 +68,7 @@ const apiService = {
   /**
    * This function will fetch data from an API and then return user performance for the specified user ID.
    *
+   * @memberOf ApiService
    * @param {number} userId
    * @returns  { Promise<object> } A promise that contains user performance for the specified user ID.
    */

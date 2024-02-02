@@ -7,12 +7,13 @@ import proteinIcon from '../assets/svg/nutrientIcons/protein-icon.svg'
  * An object that contains a list of formatted data services.
  *
  * @category Services
- *
+ * @namespace FormatDataService
  */
 const formatDataService = {
   /**
    * This function will retrieve the day of the month from the date data of the user's activity.
    *
+   * @memberOf FormatDataService
    * @param {string} value
    * @returns  { number } A number representing the day of the month for this date according to Coordinated Universal Time (UTC).
    */
@@ -22,6 +23,7 @@ const formatDataService = {
   /**
    * This function will retrieve the first letter of the day data of the user's average sessions.
    *
+   * @memberOf FormatDataService
    * @param {number} value
    * @returns  { string } A string of the label of the day corresponding to its index.
    */
@@ -32,6 +34,7 @@ const formatDataService = {
   /**
    * This function will translate the kind data of the user's performance.
    *
+   * @memberOf FormatDataService
    * @param {number} value
    * @returns  { string } A string of the translated kind corresponding to its index.
    */
@@ -49,6 +52,7 @@ const formatDataService = {
   /**
    * This function will transform the score data of the user information into a percentage.
    *
+   * @memberOf FormatDataService
    * @param {object} data
    * @returns  { object } An object of the score percentage data from the user information.
    */
@@ -62,6 +66,7 @@ const formatDataService = {
   /**
    * This function will retrieve the translated nutrient, its unit, and picture data from the quantity nutrient index.
    *
+   * @memberOf FormatDataService
    * @param {number} value
    * @returns  { object } An object containing the translated nutrient, its unit, and picture data corresponding to its index.
    */

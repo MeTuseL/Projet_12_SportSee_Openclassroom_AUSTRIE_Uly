@@ -9,11 +9,13 @@ import {
  * An object that contains a list of mock services.
  *
  * @category Services
+ * @namespace MockService
  */
 const mockService = {
   /**
    * This function will retrieve data from mocked data and then return user information for the specified user ID.
    *
+   * @memberOf MockService
    * @param {number} userId
    * @returns  { object } A object that contains user information for the specified user ID.
    */
@@ -24,6 +26,7 @@ const mockService = {
   /**
    * This function will retrieve data from mocked data and then return user activity for the specified user ID.
    *
+   * @memberOf MockService
    * @param {number} userId
    * @returns  { object } A object that contains user activity for the specified user ID.
    */
@@ -34,6 +37,7 @@ const mockService = {
   /**
    * This function will retrieve data from mocked data and then return user average sessions for the specified user ID.
    *
+   * @memberOf MockService
    * @param {number} userId
    * @returns  { object } A object that contains user average sessions for the specified user ID.
    */
@@ -46,6 +50,7 @@ const mockService = {
   /**
    * This function will retrieve data from mocked data and then return user performance for the specified user ID.
    *
+   * @memberOf MockService
    * @param {number} userId
    * @returns  { object } A object that contains user performance for the specified user ID.
    */
