@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__title{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+        font-size: var(--font-size-24);
+        margin-bottom: 25px;
+
+        &__one{
+            color: var(--text-color-dark-3);
+            margin-right: 15px;
+        }
+        &__two{
+            color: var(--primary-color);
+        }
+    }
+    &__subtitle{
+        color: var(--text-color-dark-3);
+        font-size: var(--font-size-15);
+    }
+}

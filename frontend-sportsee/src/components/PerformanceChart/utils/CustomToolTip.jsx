@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
+import '../styles/performanceChart.scss'
 
 function CustomTooltip(props) {
   const { active, payload } = props
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip" style={{ backgroundColor: 'white' }}>
-        <p className="desc">{payload[0].value}</p>
+      <div className="customTooltipPerformance">
+        <p>{payload[0].value}</p>
       </div>
     )
   }

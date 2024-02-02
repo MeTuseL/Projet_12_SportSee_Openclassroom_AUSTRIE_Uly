@@ -9,9 +9,9 @@ function CustomCursor(props) {
       fill="#000000"
       fillOpacity="10%"
       x={x}
-      y={y}
+      y={y - 50}
       width={width}
-      height={height}
+      height={height + 100}
       style={{ transition: 'all ease-out 0.3s' }}
     />
   )

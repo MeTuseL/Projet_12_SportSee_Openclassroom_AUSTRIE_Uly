@@ -7,23 +7,29 @@ import {
   Navigate,
 } from 'react-router-dom'
 
-import Dashboard from './pages/dashboard'
+import Dashboard from './pages/Dashboard'
 import NavigationBar from './components/NavigationBar'
 import { Link } from 'react-router-dom'
-import styles from './css/body.module.css'
-import './css/global.css'
+import styles from './styles/body/body.module.scss'
+import './styles/global/global.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Router>
+      <NavigationBar />
       <div className={styles.container}>
-        {/*add a div for center body */}
-        <NavigationBar />
         <main>
           <Routes>
             {/* redirect to /tableau-bord/:idUser when user goes to / */}
-            <Route path="/" element={<Navigate to="/tableau-bord/12" />} />
+            <Route
+              path="/"
+              element={
+                <Navigate
+                  to={'/tableau-bord/' + process.env.REACT_APP_IDUSER}
+                />
+              }
+            />
             <Route path="/tableau-bord/:idUser" element={<Dashboard />} />
             <Route
               path="*"

@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #FF0101;
+    --primary-color-light: #FF0000;
+    --primary-color-dark: #E60000;
+
+    --background-color: #FFFFFF;
+    --background-color-light: #FBFBFB;
+    --background-color-light-2: #C4C4C480;
+    --background-color-dark: #020203;
+    --background-color-dark-2: #282D30;
+
+    --text-color-light-1: #FFFFFF;
+    --text-color-light-2: #74798C;
+    --text-color-light-3: #9B9EAC;
+    --text-color-light-4: #DEDEDE;
+    --text-color-dark-1: #20253A;
+    --text-color-dark-2: #282D30;
+    --text-color-dark-3: #020203;
+
+    --font-size-5: 5px;
+    --font-size-8: 8px;
+    --font-size-12: 12px;
+    --font-size-14: 14px;
+    --font-size-15: 15px;
+    --font-size-16: 16px;
+    --font-size-18: 18px;
+    --font-size-20: 20px;
+    --font-size-22: 22px;
+    --font-size-24: 24px;
+    --font-size-26: 26px;
+    --font-size-30: 30px;
+    --font-size-36: 36px;
+    --font-size-48: 48px;
+
+    --font-family: "Roboto", sans-serif;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none
+}
+
+main {
+    position: relative;
+    margin: auto;
+    max-width: 1824px;
+    min-height: 100vh;
+}
+
+/*tablet version */
+@media screen and (min-width:768px) and (max-width:1023px) {
+    main {
+        max-width: 1024px;
+    }
+}
+
+/* large screen desktop version */
+@media screen and (min-width:1024px) and (max-width:1439px) {
+    main {
+        max-width: 1440px;
+    }
+}

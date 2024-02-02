@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--background-color-light);
+  width: 100%;
+  border-radius: 5px;
+}
+.container__icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 25px;
+}
+.container__nutrient {
+  display: flex;
+  flex-direction: column;
+}
+.container__nutrient__count {
+  color: var(--text-color-dark-3);
+  font-weight: bold;
+  font-size: var(--font-size-18);
+}
+.container__nutrient__name {
+  color: var(--text-color-light-2);
+  font-size: var(--font-size-14);
+}/*# sourceMappingURL=nutrientCard.module.css.map */

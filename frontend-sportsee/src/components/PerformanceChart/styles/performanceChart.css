@@ -1,0 +1,13 @@
+.customTooltipPerformance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 10px;
+  height: 30px;
+}
+.customTooltipPerformance p {
+  color: var(--text-color-dark-2);
+  font-size: var(--font-size-8);
+  font-weight: 600;
+}/*# sourceMappingURL=performanceChart.css.map */

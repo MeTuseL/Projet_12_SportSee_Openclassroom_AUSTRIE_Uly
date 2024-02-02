@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types'
+import '../styles/activityChart.scss'
 
 function CustomTooltip(props) {
   const { active, payload, barOneUnit, barTwoUnit } = props
   if (active && payload && payload.length) {
     return (
-      <div
-        className="custom-tooltip"
-        style={{ color: 'white', backgroundColor: '#E60000' }}
-      >
-        <p className="desc">{`${payload[0].value}${barOneUnit}`}</p>
-        <p className="desc2">{`${payload[1].value}${barTwoUnit}`}</p>
+      <div className="customTooltipActivity">
+        <p>{`${payload[0].value}${barOneUnit}`}</p>
+        <p>{`${payload[1].value}${barTwoUnit}`}</p>
       </div>
     )
   }

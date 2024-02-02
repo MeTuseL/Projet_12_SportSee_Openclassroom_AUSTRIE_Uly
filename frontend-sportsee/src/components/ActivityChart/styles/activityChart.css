@@ -1,0 +1,33 @@
+.customTooltipActivity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color-light-1);
+  background-color: var(--primary-color-dark);
+  height: 100px;
+  padding: 20px 15px;
+}
+.customTooltipActivity p {
+  color: var(--text-color-light-1);
+  font-size: var(--font-size-12);
+}
+
+.titleActivityChart {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  color: var(--text-color-dark-2);
+  font-size: var(--font-size-16);
+  z-index: 1;
+}
+
+.recharts-legend-item {
+  margin-right: 0 !important;
+  margin-left: 45px;
+}
+.recharts-legend-item-text {
+  color: var(--text-color-light-2) !important;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+}/*# sourceMappingURL=activityChart.css.map */

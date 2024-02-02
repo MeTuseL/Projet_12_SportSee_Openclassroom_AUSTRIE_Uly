@@ -1,0 +1,25 @@
+.customLegendScore {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.customLegendScore__title {
+  color: var(--text-color-light-2);
+  font-size: var(--font-size-16);
+  text-align: center;
+}
+.customLegendScore__title__header {
+  color: var(--text-color-dark-2);
+  font-size: var(--font-size-24);
+  font-weight: 600;
+}
+
+.titleScoreChart {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  color: var(--text-color-dark-2);
+  font-size: var(--font-size-16);
+  z-index: 1;
+}/*# sourceMappingURL=scoreChart.css.map */

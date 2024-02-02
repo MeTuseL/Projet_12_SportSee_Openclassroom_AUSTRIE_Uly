@@ -1,15 +1,14 @@
-// import UserFetchService from '../../services/userData'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import mockService from '../../services/mockService'
+// import mockService from '../../services/mockService'
 import apiService from '../../services/apiService'
 
-import styles from './css/dashboard.module.css'
-import caloriesIcon from '../../assets/svg/calories-icon.svg'
-import carbsIcon from '../../assets/svg/carbs-icon.svg'
-import fatIcon from '../../assets/svg/fat-icon.svg'
-import proteinIcon from '../../assets/svg/protein-icon.svg'
+import styles from './styles/dashboard.module.scss'
+import caloriesIcon from '../../assets/svg/nutrientIcons/calories-icon.svg'
+import carbsIcon from '../../assets/svg/nutrientIcons/carbs-icon.svg'
+import fatIcon from '../../assets/svg/nutrientIcons/fat-icon.svg'
+import proteinIcon from '../../assets/svg/nutrientIcons/protein-icon.svg'
 
 import ActivityChart from '../../components/ActivityChart'
 import AveSessionsChart from '../../components/AveSessionsChart'
@@ -20,6 +19,7 @@ import NutrientCard from '../../components/NutrientCard'
 
 function Dashboard() {
   //
+  document.title = 'Dashboard - SportSee'
   const { idUser } = useParams()
   const navigate = useNavigate()
   const [userInfos, setUserInfos] = useState(null)
@@ -30,7 +30,7 @@ function Dashboard() {
 
   useEffect(() => {
     //mock service
-    // !mockService.getUserInfo(idUser) && navigate('/404')
+    // !(mockService.getUserInfo(idUser)) && navigate('/404')
     //
     //   setUserInfos(mockService.getUserInfo(idUser))
     //   setUserActivity(mockService.getUserActivity(idUser))
@@ -59,18 +59,22 @@ function Dashboard() {
   const dataNutrients = [
     {
       name: 'Calories',
+      unit: 'kcal',
       picture: caloriesIcon,
     },
     {
       name: 'Proteines',
+      unit: 'g',
       picture: proteinIcon,
     },
     {
       name: 'Glucides',
+      unit: 'g',
       picture: carbsIcon,
     },
     {
       name: 'Lipides',
+      unit: 'g',
       picture: fatIcon,
     },
   ]
@@ -89,42 +93,39 @@ function Dashboard() {
           />
         </header>
         <section>
-          <div className={styles.container_section}>
-            <div style={{ height: '400px' }}>
+          <div className={styles.container__section}>
+            <div className={styles.container__section__activity}>
               <ActivityChart
                 data={userActivity}
                 barOneUnitName="Poids"
                 barOneUnit="kg"
                 barTwoUnitName="Calories brûlées"
                 barTwoUnit="kCal"
-                titleGraph="Activité quotidienne"
+                titleChart="Activité quotidienne"
               />
             </div>
-            <div style={{ height: '100px', margin: '50px' }}></div>
-            <div style={{ height: '400px' }}>
+            <div className={styles.container__section__aveSessions}>
               <AveSessionsChart
                 data={userAverageSessions}
                 titleGraph="Durée moyenne des sessions"
               />
             </div>
-            <div style={{ height: '100px', margin: '50px' }}></div>
-            <div style={{ height: '400px' }}>
+            <div className={styles.container__section__performance}>
               <PerformanceChart data={userPerformance} />
             </div>
-            <div style={{ height: '100px', margin: '50px' }}></div>
-            <div style={{ height: '400px' }}>
+            <div className={styles.container__section__score}>
               <ScoreChart data={userInfos} />
             </div>
           </div>
         </section>
         <aside>
-          <div className={styles.container_aside}>
+          <div className={styles.container__aside}>
             {Object.values(userInfos.keyData).map((nutrientValue, index) => (
               <NutrientCard
                 key={`${dataNutrients[index].name}-${index}`}
                 picture={dataNutrients[index].picture}
                 name={dataNutrients[index].name}
-                nutrientCount={nutrientValue}
+                nutrientCount={`${nutrientValue.toLocaleString()}${dataNutrients[index].unit}`}
               />
             ))}
           </div>

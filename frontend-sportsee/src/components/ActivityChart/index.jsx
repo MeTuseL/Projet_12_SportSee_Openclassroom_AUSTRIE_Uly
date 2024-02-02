@@ -11,7 +11,11 @@ import {
 
 import PropTypes from 'prop-types'
 
-import CustomToolTip from './utils/customToolTip'
+import CustomTooltip from './utils/CustomTooltip'
+
+import './styles/activityChart.scss'
+
+import formatDataService from '../../services/formatDataService'
 
 function ActivityChart(props) {
   const {
@@ -20,24 +24,12 @@ function ActivityChart(props) {
     barOneUnit,
     barTwoUnitName,
     barTwoUnit,
-    titleGraph,
+    titleChart,
   } = props
 
-  const formatDay = (value) => {
-    return new Date(value).getUTCDate()
-  }
-
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      style={{
-        backgroundColor: '#FBFBFB',
-        boxShadow: '0px 2px 4px 0px #00000005',
-        padding: '25px',
-      }}
-    >
-      <h2>{titleGraph}</h2>
+    <ResponsiveContainer width="100%" height="100%">
+      <h2 className="titleActivityChart">{titleChart}</h2>
       <BarChart
         data={data.sessions}
         margin={{
@@ -53,16 +45,17 @@ function ActivityChart(props) {
           strokeDasharray="3 3"
           horizontal={true}
           vertical={false}
+          stroke="var(--text-color-light-4)"
         />
         <XAxis
           dataKey="day"
           tickMargin={15}
           tickLine={false}
-          tickFormatter={formatDay}
+          tickFormatter={formatDataService.formatDate}
           // scale="point"
           // padding={{ left: 10, right: 10 }}
-          tick={{ fill: '#9B9EAC' }}
-          stroke="#DEDEDE"
+          tick={{ fill: 'var(--text-color-light-3)' }}
+          stroke="var(--text-color-light-4)"
         />
         <YAxis
           yAxisId="kilogram"
@@ -72,36 +65,35 @@ function ActivityChart(props) {
           tickCount={3}
           axisLine={false}
           tickLine={false}
-          tick={{ fill: '#9B9EAC' }}
+          tick={{ fill: 'var(--text-color-light-3)' }}
         />
         <YAxis hide={true} yAxisId="calories" />
         <Tooltip
           content={
-            <CustomToolTip barOneUnit={barOneUnit} barTwoUnit={barTwoUnit} />
+            <CustomTooltip barOneUnit={barOneUnit} barTwoUnit={barTwoUnit} />
           }
-          cursor={{ fill: '#C4C4C480' }}
+          cursor={{ fill: 'var(--background-color-light-2)' }}
           wrapperStyle={{ left: '7%', bottom: '0px' }}
-          background={{ fill: 'red' }}
         />
         <Legend
           verticalAlign="top"
           align="right"
           iconType="circle"
-          iconSize="10"
+          iconSize="9"
           height={80}
         />
         <Bar
           dataKey="kilogram"
           yAxisId="kilogram"
           name={`${barOneUnitName} (${barOneUnit})`}
-          fill="#282D30"
+          fill="var(--text-color-dark-2)"
           radius={[3.5, 3.5, 0, 0]}
         />
         <Bar
           dataKey="calories"
           yAxisId="calories"
           name={`${barTwoUnitName} (${barTwoUnit})`}
-          fill="#E60000"
+          fill="var(--primary-color-dark)"
           radius={[3.5, 3.5, 0, 0]}
         />
       </BarChart>
@@ -116,7 +108,7 @@ ActivityChart.propTypes = {
   barOneUnit: PropTypes.string.isRequired,
   barTwoUnitName: PropTypes.string.isRequired,
   barTwoUnit: PropTypes.string.isRequired,
-  titleGraph: PropTypes.string.isRequired,
+  titleChart: PropTypes.string.isRequired,
 }
 
 export default ActivityChart

@@ -13,34 +13,15 @@ import PropTypes from 'prop-types'
 import CustomCursor from './utils/CustomCursor'
 import CustomToolTip from './utils/CustomToolTip'
 
+import formatDataService from '../../services/formatDataService'
+import './styles/aveSessionsChart.scss'
+
 function AveSessionsChart(props) {
   const { data, titleGraph } = props
 
-  const listLabelDay = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
-  const formatDay = (value) => {
-    return listLabelDay[value - 1]
-  }
-
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      style={{ position: 'relative' }}
-    >
-      <h2
-        style={{
-          position: 'absolute',
-          margin: '0',
-          color: 'white',
-          fontSize: '20px',
-          opacity: '60%',
-          top: '55px',
-          zIndex: '1',
-          left: '55px',
-        }}
-      >
-        {titleGraph}
-      </h2>
+    <ResponsiveContainer width="100%" height="100%">
+      <h2 className="titleSessionsChart">{titleGraph}</h2>
 
       <LineChart
         data={data.sessions}
@@ -50,7 +31,6 @@ function AveSessionsChart(props) {
           strokeDasharray="3 3"
           horizontal={false}
           vertical={false}
-          fill="#FF0000"
         />
         <XAxis
           dataKey="day"
@@ -58,9 +38,9 @@ function AveSessionsChart(props) {
           axisLine={false}
           tickLine={false}
           stroke="white"
-          tickFormatter={formatDay}
+          tickFormatter={formatDataService.formatDay}
           mirror={true}
-          fill="#FFFFFF"
+          fill="var(--text-color-light-1)"
           fillOpacity="60%"
           interval={'preserveStartEnd'}
           padding={{ right: 30, left: 30 }}
@@ -70,8 +50,16 @@ function AveSessionsChart(props) {
 
         <defs>
           <linearGradient id="lineGradient">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="30%" />
-            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="100%" />
+            <stop
+              offset="0%"
+              stopColor="var(--text-color-light-1)"
+              stopOpacity="30%"
+            />
+            <stop
+              offset="100%"
+              stopColor="var(--text-color-light-1)"
+              stopOpacity="100%"
+            />
           </linearGradient>
         </defs>
 
@@ -79,11 +67,12 @@ function AveSessionsChart(props) {
           type="natural"
           dataKey="sessionLength"
           stroke="url(#lineGradient)"
-          fill="white"
+          fill="var(--text-color-light-1)"
           dot={false}
           strokeWidth={3}
           activeDot={{
-            stroke: 'rgba(255, 255, 255, 0.198345)',
+            stroke: 'var(--text-color-light-1)',
+            strokeOpacity: 0.4,
             strokeWidth: '10px',
             r: 5,
           }}

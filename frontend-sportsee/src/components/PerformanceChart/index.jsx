@@ -10,36 +10,28 @@ import {
 } from 'recharts'
 
 import CustomToolTip from './utils/CustomToolTip'
+import CustomTickPolarAngleAxis from './utils/CustomTickPolarAngleAxis'
+
+import formatDataService from '../../services/formatDataService'
+import './styles/performanceChart.scss'
 
 function PerformanceChart(props) {
   const { data } = props
-  //
-  const translatedKind = {
-    1: 'Cardio',
-    2: 'Energie',
-    3: 'Endurance',
-    4: 'Force',
-    5: 'Vitesse',
-    6: 'Intensité',
-  }
-  const formatKind = (value) => {
-    return translatedKind[value]
-  }
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <RadarChart
-        outerRadius="60%"
-        data={[...data.data].reverse()}
-        style={{ backgroundColor: '#282D30' }}
-      >
-        <PolarGrid radialLines={false} stroke="#FFFFFF" />
+      <RadarChart outerRadius="70%" data={[...data.data].reverse()}>
+        <PolarGrid radialLines={false} stroke="var(--text-color-light-1)" />
         <PolarAngleAxis
           dataKey="kind"
-          tickFormatter={formatKind}
+          tick={
+            <CustomTickPolarAngleAxis
+              formatKind={formatDataService.formatKind}
+            />
+          }
           tickLine={false}
-          tick={{ fill: '#FFFFFF' }}
-          stroke="#FFFFFF"
+          stroke="var(--text-color-light-1)"
+          dy={5}
         />
         <PolarRadiusAxis
           axisLine={false}
@@ -49,8 +41,8 @@ function PerformanceChart(props) {
         />
         <Radar
           dataKey="value"
-          stroke="#FF0101"
-          fill="#FF0101"
+          stroke="var(--primary-color)"
+          fill="var(--primary-color)"
           fillOpacity={0.5}
         />
         <Tooltip content={<CustomToolTip />} cursor={{ stroke: 'none' }} />

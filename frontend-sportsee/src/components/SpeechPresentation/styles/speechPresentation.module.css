@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container__title {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  font-size: var(--font-size-24);
+  margin-bottom: 25px;
+}
+.container__title__one {
+  color: var(--text-color-dark-3);
+  margin-right: 15px;
+}
+.container__title__two {
+  color: var(--primary-color);
+}
+.container__subtitle {
+  color: var(--text-color-dark-3);
+  font-size: var(--font-size-15);
+}/*# sourceMappingURL=speechPresentation.module.css.map */
