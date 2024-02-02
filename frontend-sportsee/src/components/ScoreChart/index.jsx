@@ -5,11 +5,17 @@ import {
   Legend,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import CustomLegend from './utils/CustomLegend'
-
+import CustomLegendScore from './utils/CustomLegendScore'
 import formatDataService from '../../services/formatDataService'
 import './styles/scoreChart.scss'
 
+/**
+ * This component renders a score chart using recharts.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a score chart using recharts.
+ */
 function ScoreChart(props) {
   const { data } = props
 
@@ -40,7 +46,9 @@ function ScoreChart(props) {
 
         <Legend
           content={
-            <CustomLegend score={formatDataService.formatScore(data).value} />
+            <CustomLegendScore
+              score={formatDataService.formatScore(data).value}
+            />
           }
           iconType="none"
           layout="vertical"
@@ -52,6 +60,9 @@ function ScoreChart(props) {
   )
 }
 ScoreChart.propTypes = {
+  /**
+   * Score data of user -> From the Api data.
+   */
   data: PropTypes.object.isRequired,
 }
 export default ScoreChart

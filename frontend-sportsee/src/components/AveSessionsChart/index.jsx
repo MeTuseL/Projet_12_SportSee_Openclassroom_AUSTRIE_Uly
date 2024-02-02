@@ -7,21 +7,25 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
-
 import PropTypes from 'prop-types'
-
-import CustomCursor from './utils/CustomCursor'
-import CustomToolTip from './utils/CustomToolTip'
-
+import CustomCursorAveSessions from './utils/CustomCursorAveSessions'
+import CustomTooltipAveSessions from './utils/CustomTooltipAveSessions'
 import formatDataService from '../../services/formatDataService'
 import './styles/aveSessionsChart.scss'
 
+/**
+ * This component renders a average sessions chart using recharts.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a average sessions chart using recharts.
+ */
 function AveSessionsChart(props) {
-  const { data, titleGraph } = props
+  const { data } = props
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <h2 className="titleSessionsChart">{titleGraph}</h2>
+      <h2 className="titleSessionsChart">Durée moyenne des sessions</h2>
 
       <LineChart
         data={data.sessions}
@@ -46,7 +50,10 @@ function AveSessionsChart(props) {
           padding={{ right: 30, left: 30 }}
         />
         <YAxis hide={true} domain={['dataMin-30', 'dataMax+30']} />
-        <Tooltip content={<CustomToolTip />} cursor={<CustomCursor />} />
+        <Tooltip
+          content={<CustomTooltipAveSessions />}
+          cursor={<CustomCursorAveSessions />}
+        />
 
         <defs>
           <linearGradient id="lineGradient">
@@ -81,9 +88,10 @@ function AveSessionsChart(props) {
     </ResponsiveContainer>
   )
 }
-//add type to props
 AveSessionsChart.propTypes = {
+  /**
+   * Average sessions data of user -> From the Api data.
+   */
   data: PropTypes.object.isRequired,
-  titleGraph: PropTypes.string.isRequired,
 }
 export default AveSessionsChart

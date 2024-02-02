@@ -1,6 +1,17 @@
 import axios from 'axios'
 
+/**
+ * An object that contains a list of api services.
+ *
+ * @category Services
+ */
 const apiService = {
+  /**
+   * This function will fetch data from an API and then return user information for the specified user ID.
+   *
+   * @param {number} userId
+   * @returns  { Promise<object> } A promise that contains user information for the specified user ID.
+   */
   getUserInfos: async (userId) => {
     try {
       const response = await axios(`http://localhost:3000/user/${userId}`)
@@ -12,6 +23,12 @@ const apiService = {
       console.error('Error fetching data: ', error)
     }
   },
+  /**
+   * This function will fetch data from an API and then return user activity for the specified user ID.
+   *
+   * @param {number} userId
+   * @returns  { Promise<object> } A promise that contains user activity for the specified user ID.
+   */
   getUserActivity: async (userId) => {
     try {
       const response = await axios(
@@ -25,6 +42,12 @@ const apiService = {
       console.error('Error fetching data: ', error)
     }
   },
+  /**
+   * This function will fetch data from an API and then return user average sessions for the specified user ID.
+   *
+   * @param {number} userId
+   * @returns  { Promise<object> } A promise that contains user average sessions for the specified user ID.
+   */
   getUserAverageSessions: async (userId) => {
     try {
       const response = await axios(
@@ -38,6 +61,12 @@ const apiService = {
       console.error('Error fetching data: ', error)
     }
   },
+  /**
+   * This function will fetch data from an API and then return user performance for the specified user ID.
+   *
+   * @param {number} userId
+   * @returns  { Promise<object> } A promise that contains user performance for the specified user ID.
+   */
   getUserPerformance: async (userId) => {
     try {
       const response = await axios(

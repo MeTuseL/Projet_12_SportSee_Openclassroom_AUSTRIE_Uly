@@ -3,12 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 // import mockService from '../../services/mockService'
 import apiService from '../../services/apiService'
+import formatDataService from '../../services/formatDataService'
 
 import styles from './styles/dashboard.module.scss'
-import caloriesIcon from '../../assets/svg/nutrientIcons/calories-icon.svg'
-import carbsIcon from '../../assets/svg/nutrientIcons/carbs-icon.svg'
-import fatIcon from '../../assets/svg/nutrientIcons/fat-icon.svg'
-import proteinIcon from '../../assets/svg/nutrientIcons/protein-icon.svg'
 
 import ActivityChart from '../../components/ActivityChart'
 import AveSessionsChart from '../../components/AveSessionsChart'
@@ -17,8 +14,14 @@ import ScoreChart from '../../components/ScoreChart'
 import SpeechPresentation from '../../components/SpeechPresentation'
 import NutrientCard from '../../components/NutrientCard'
 
+/**
+ * This component renders a user profile page with this data.
+ *
+ * @category Pages
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a user profile page with this data.
+ */
 function Dashboard() {
-  //
   document.title = 'Dashboard - SportSee'
   const { idUser } = useParams()
   const navigate = useNavigate()
@@ -56,29 +59,6 @@ function Dashboard() {
       .finally(() => setIsLoading(false))
   }, [idUser, navigate])
 
-  const dataNutrients = [
-    {
-      name: 'Calories',
-      unit: 'kcal',
-      picture: caloriesIcon,
-    },
-    {
-      name: 'Proteines',
-      unit: 'g',
-      picture: proteinIcon,
-    },
-    {
-      name: 'Glucides',
-      unit: 'g',
-      picture: carbsIcon,
-    },
-    {
-      name: 'Lipides',
-      unit: 'g',
-      picture: fatIcon,
-    },
-  ]
-
   if (isLoading) {
     return <h2>Loading...</h2>
   }
@@ -95,20 +75,10 @@ function Dashboard() {
         <section>
           <div className={styles.container__section}>
             <div className={styles.container__section__activity}>
-              <ActivityChart
-                data={userActivity}
-                barOneUnitName="Poids"
-                barOneUnit="kg"
-                barTwoUnitName="Calories brûlées"
-                barTwoUnit="kCal"
-                titleChart="Activité quotidienne"
-              />
+              <ActivityChart data={userActivity} />
             </div>
             <div className={styles.container__section__aveSessions}>
-              <AveSessionsChart
-                data={userAverageSessions}
-                titleGraph="Durée moyenne des sessions"
-              />
+              <AveSessionsChart data={userAverageSessions} />
             </div>
             <div className={styles.container__section__performance}>
               <PerformanceChart data={userPerformance} />
@@ -122,10 +92,10 @@ function Dashboard() {
           <div className={styles.container__aside}>
             {Object.values(userInfos.keyData).map((nutrientValue, index) => (
               <NutrientCard
-                key={`${dataNutrients[index].name}-${index}`}
-                picture={dataNutrients[index].picture}
-                name={dataNutrients[index].name}
-                nutrientCount={`${nutrientValue.toLocaleString()}${dataNutrients[index].unit}`}
+                key={`${formatDataService.formatNutrient(index).name}-${index}`}
+                picture={formatDataService.formatNutrient(index).picture}
+                name={formatDataService.formatNutrient(index).name}
+                nutrientQuantity={`${nutrientValue.toLocaleString()}${formatDataService.formatNutrient(index).unit}`}
               />
             ))}
           </div>

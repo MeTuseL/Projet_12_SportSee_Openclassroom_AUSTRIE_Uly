@@ -1,13 +1,18 @@
 import { NavLink, Link } from 'react-router-dom'
-
 import sportSeeLogo from '../../assets/svg/logo/sportsee-logo.svg'
 import relaxIcon from '../../assets/svg/navLeftIcons/relax-icon.svg'
 import swimIcon from '../../assets/svg/navLeftIcons/swim-icon.svg'
 import cycleIcon from '../../assets/svg/navLeftIcons/cycle-icon.svg'
 import trainIcon from '../../assets/svg/navLeftIcons/train-icon.svg'
-
 import styles from './styles/navigationBar.module.scss'
 
+/**
+ * This component renders a navigation bar.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a navigation bar.
+ */
 function NavigationBar() {
   const isActiveNav = ({ isActive }) => ({
     textDecoration: isActive ? 'underline' : 'none',

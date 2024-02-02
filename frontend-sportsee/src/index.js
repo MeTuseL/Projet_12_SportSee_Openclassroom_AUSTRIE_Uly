@@ -6,13 +6,17 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom'
-
 import Dashboard from './pages/Dashboard'
 import NavigationBar from './components/NavigationBar'
 import { Link } from 'react-router-dom'
 import styles from './styles/body/body.module.scss'
 import './styles/global/global.scss'
 
+/**
+ * Creating a router using React Router that renders a navigation bar and my dashboard page.
+ *
+ * @category Router
+ */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>

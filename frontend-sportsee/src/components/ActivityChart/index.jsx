@@ -8,28 +8,24 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts'
-
 import PropTypes from 'prop-types'
-
-import CustomTooltip from './utils/CustomTooltip'
-
+import CustomTooltipActivity from './utils/CustomTooltipActivity'
 import './styles/activityChart.scss'
-
 import formatDataService from '../../services/formatDataService'
 
+/**
+ * This component renders a activity chart using recharts.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a activity chart using recharts.
+ */
 function ActivityChart(props) {
-  const {
-    data,
-    barOneUnitName,
-    barOneUnit,
-    barTwoUnitName,
-    barTwoUnit,
-    titleChart,
-  } = props
+  const { data } = props
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <h2 className="titleActivityChart">{titleChart}</h2>
+      <h2 className="titleActivityChart">Activité quotidienne</h2>
       <BarChart
         data={data.sessions}
         margin={{
@@ -69,9 +65,7 @@ function ActivityChart(props) {
         />
         <YAxis hide={true} yAxisId="calories" />
         <Tooltip
-          content={
-            <CustomTooltip barOneUnit={barOneUnit} barTwoUnit={barTwoUnit} />
-          }
+          content={<CustomTooltipActivity />}
           cursor={{ fill: 'var(--background-color-light-2)' }}
           wrapperStyle={{ left: '7%', bottom: '0px' }}
         />
@@ -85,14 +79,14 @@ function ActivityChart(props) {
         <Bar
           dataKey="kilogram"
           yAxisId="kilogram"
-          name={`${barOneUnitName} (${barOneUnit})`}
+          name="Poids (kg)"
           fill="var(--text-color-dark-2)"
           radius={[3.5, 3.5, 0, 0]}
         />
         <Bar
           dataKey="calories"
           yAxisId="calories"
-          name={`${barTwoUnitName} (${barTwoUnit})`}
+          name="Calories brûlées (kCal)"
           fill="var(--primary-color-dark)"
           radius={[3.5, 3.5, 0, 0]}
         />
@@ -100,15 +94,10 @@ function ActivityChart(props) {
     </ResponsiveContainer>
   )
 }
-
-//add type to props
 ActivityChart.propTypes = {
+  /**
+   * Activity data of user -> From the Api data.
+   */
   data: PropTypes.object.isRequired,
-  barOneUnitName: PropTypes.string.isRequired,
-  barOneUnit: PropTypes.string.isRequired,
-  barTwoUnitName: PropTypes.string.isRequired,
-  barTwoUnit: PropTypes.string.isRequired,
-  titleChart: PropTypes.string.isRequired,
 }
-
 export default ActivityChart

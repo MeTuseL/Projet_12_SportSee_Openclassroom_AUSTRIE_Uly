@@ -8,13 +8,18 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
-
-import CustomToolTip from './utils/CustomToolTip'
-import CustomTickPolarAngleAxis from './utils/CustomTickPolarAngleAxis'
-
+import CustomTooltipPerformance from './utils/CustomTooltipPerformance'
+import CustomKindLabel from './utils/CustomKindLabel'
 import formatDataService from '../../services/formatDataService'
 import './styles/performanceChart.scss'
 
+/**
+ * This component renders a performance chart using recharts.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a performance chart using recharts.
+ */
 function PerformanceChart(props) {
   const { data } = props
 
@@ -24,11 +29,7 @@ function PerformanceChart(props) {
         <PolarGrid radialLines={false} stroke="var(--text-color-light-1)" />
         <PolarAngleAxis
           dataKey="kind"
-          tick={
-            <CustomTickPolarAngleAxis
-              formatKind={formatDataService.formatKind}
-            />
-          }
+          tick={<CustomKindLabel formatKind={formatDataService.formatKind} />}
           tickLine={false}
           stroke="var(--text-color-light-1)"
           dy={5}
@@ -45,13 +46,18 @@ function PerformanceChart(props) {
           fill="var(--primary-color)"
           fillOpacity={0.5}
         />
-        <Tooltip content={<CustomToolTip />} cursor={{ stroke: 'none' }} />
+        <Tooltip
+          content={<CustomTooltipPerformance />}
+          cursor={{ stroke: 'none' }}
+        />
       </RadarChart>
     </ResponsiveContainer>
   )
 }
-//add type to props
 PerformanceChart.propTypes = {
+  /**
+   * Average sessions data of user -> From the Api data.
+   */
   data: PropTypes.object.isRequired,
 }
 export default PerformanceChart

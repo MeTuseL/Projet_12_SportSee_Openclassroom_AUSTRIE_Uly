@@ -1,6 +1,13 @@
 import styles from './styles/speechPresentation.module.scss'
 import PropTypes from 'prop-types'
 
+/**
+ * This component renders a speech presentation.
+ *
+ * @category Components
+ * @component
+ * @returns  { React.JSX.Element } A React element that renders a speech presentation.
+ */
 function SpeechPresentation(props) {
   const { data, speech } = props
   return (
@@ -17,7 +24,13 @@ function SpeechPresentation(props) {
   )
 }
 SpeechPresentation.propTypes = {
+  /**
+   * User information data -> From the API data.
+   */
   data: PropTypes.object.isRequired,
+  /**
+   * Personalized speech motivation of the user.
+   */
   speech: PropTypes.string.isRequired,
 }
 export default SpeechPresentation
