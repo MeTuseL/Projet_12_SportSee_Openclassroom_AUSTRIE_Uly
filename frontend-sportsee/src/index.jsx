@@ -20,18 +20,23 @@ import './styles/global/global.scss'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/SportSee">
       <NavigationBar />
       <div className={styles.container}>
         <main>
           <Routes>
-            {/* redirect to /tableau-bord/:idUser when user goes to / */}
             <Route
               path="/"
               element={
-                <Navigate
-                  to={'/tableau-bord/' + process.env.REACT_APP_IDUSER}
-                />
+                <div>
+                  <h2>Choisir un utilisateur</h2>
+                  <nav style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Link to={'/tableau-bord/12'}>Utilisateur 1</Link>
+                    <Link to={'/tableau-bord/' + process.env.REACT_APP_IDUSER}>
+                      Utilisateur 2
+                    </Link>
+                  </nav>
+                </div>
               }
             />
             <Route path="/tableau-bord/:idUser" element={<Dashboard />} />
@@ -40,7 +45,7 @@ root.render(
               element={
                 <div>
                   <h2>404 Page not found</h2>
-                  <Link to="/">Retourner au tableau de bord</Link>
+                  <Link to="/">Retourner à l'accueil</Link>
                 </div>
               }
             />
