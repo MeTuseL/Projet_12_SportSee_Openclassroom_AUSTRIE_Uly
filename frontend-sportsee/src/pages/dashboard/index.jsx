@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-// import mockService from '../../services/mockService'
-import apiService from '../../services/apiService'
+import ApiService from '../../services/apiService'
 import formatDataService from '../../services/formatDataService'
 
 import styles from './styles/dashboard.module.scss'
@@ -32,16 +31,8 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    //mock service
-    // !(mockService.getUserInfo(idUser)) && navigate('/404')
-    //
-    //   setUserInfos(mockService.getUserInfo(idUser))
-    //   setUserActivity(mockService.getUserActivity(idUser))
-    //   setUserAverageSessions(mockService.getUserAverageSessions(idUser))
-    //   setUserPerformance(mockService.getUserPerformance(idUser))
-    // }
-
     //api service
+    const apiService = new ApiService()
     Promise.all([
       apiService.getUserInfos(idUser),
       apiService.getUserActivity(idUser),
