@@ -70,7 +70,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Components</h2><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AveSessionsChart.html">AveSessionsChart</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="NutrientCard.html">NutrientCard</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li><li><a href="SpeechPresentation.html">SpeechPresentation</a></li></ul></div><div class="category"><h2>Components/Utils</h2><h3>Components</h3><ul><li><a href="CustomCursorAveSessions.html">CustomCursorAveSessions</a></li><li><a href="CustomKindLabel.html">CustomKindLabel</a></li><li><a href="CustomLegendScore.html">CustomLegendScore</a></li><li><a href="CustomTooltipActivity.html">CustomTooltipActivity</a></li><li><a href="CustomTooltipAveSessions.html">CustomTooltipAveSessions</a></li><li><a href="CustomTooltipPerformance.html">CustomTooltipPerformance</a></li></ul></div><div class="category"><h2>Pages</h2><h3>Components</h3><ul><li><a href="Dashboard.html">Dashboard</a></li></ul></div><div class="category"><h2>Router</h2><h3>Global</h3><ul><li><a href="global.html#root">root</a></li></ul></div><div class="category"><h2>Services</h2><h3>Namespaces</h3><ul><li><a href="ApiService.html">ApiService</a></li><li><a href="FormatDataService.html">FormatDataService</a></li><li><a href="MockService.html">MockService</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Components</h2><h3>Components</h3><ul><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="AveSessionsChart.html">AveSessionsChart</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="NutrientCard.html">NutrientCard</a></li><li><a href="PerformanceChart.html">PerformanceChart</a></li><li><a href="ScoreChart.html">ScoreChart</a></li><li><a href="SpeechPresentation.html">SpeechPresentation</a></li></ul></div><div class="category"><h2>Components/Utils</h2><h3>Components</h3><ul><li><a href="CustomCursorAveSessions.html">CustomCursorAveSessions</a></li><li><a href="CustomKindLabel.html">CustomKindLabel</a></li><li><a href="CustomLegendScore.html">CustomLegendScore</a></li><li><a href="CustomTooltipActivity.html">CustomTooltipActivity</a></li><li><a href="CustomTooltipAveSessions.html">CustomTooltipAveSessions</a></li><li><a href="CustomTooltipPerformance.html">CustomTooltipPerformance</a></li></ul></div><div class="category"><h2>Pages</h2><h3>Components</h3><ul><li><a href="Dashboard.html">Dashboard</a></li></ul></div><div class="category"><h2>Services</h2><h3>Namespaces</h3><ul><li><a href="ApiService.html">ApiService</a></li><li><a href="FormatDataService.html">FormatDataService</a></li></ul></div>
                 
             </nav>
         </div>
@@ -139,7 +139,7 @@
         <p class="tag-source">
             <a href="services_apiService.js.html" class="button">View Source</a>
             <span>
-                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line3">line 3</a>
+                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line9">line 9</a>
             </span>
         </p>
     
@@ -173,16 +173,18 @@
 
 
     
-    <h4 class="name" id=".getUserActivity">
-        <a class="href-link" href="#.getUserActivity">#</a>
+    <h4 class="name" id="getUserActivity">
+        <a class="href-link" href="#getUserActivity">#</a>
         
+            
+                <span class='tag'>async</span>
             
                 <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getUserActivity<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+                apiService#getUserActivity<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
             
         </span>
     </h4>
@@ -191,7 +193,7 @@
     
     
     <div class="description">
-        <p>This function will fetch data from an API and then return user activity for the specified user ID.</p>
+        <p>This function will fetch data from an API or mocked data and then return user activity for the specified user ID.</p>
     </div>
     
 
@@ -293,7 +295,7 @@
         <p class="tag-source">
             <a href="services_apiService.js.html" class="button">View Source</a>
             <span>
-                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line35">line 35</a>
+                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line51">line 51</a>
             </span>
         </p>
     
@@ -350,16 +352,18 @@
 
 
     
-    <h4 class="name" id=".getUserAverageSessions">
-        <a class="href-link" href="#.getUserAverageSessions">#</a>
+    <h4 class="name" id="getUserAverageSessions">
+        <a class="href-link" href="#getUserAverageSessions">#</a>
         
+            
+                <span class='tag'>async</span>
             
                 <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getUserAverageSessions<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+                apiService#getUserAverageSessions<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
             
         </span>
     </h4>
@@ -368,7 +372,7 @@
     
     
     <div class="description">
-        <p>This function will fetch data from an API and then return user average sessions for the specified user ID.</p>
+        <p>This function will fetch data from an API or mocked data and then return user average sessions for the specified user ID.</p>
     </div>
     
 
@@ -470,7 +474,7 @@
         <p class="tag-source">
             <a href="services_apiService.js.html" class="button">View Source</a>
             <span>
-                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line55">line 55</a>
+                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line83">line 83</a>
             </span>
         </p>
     
@@ -527,16 +531,18 @@
 
 
     
-    <h4 class="name" id=".getUserInfos">
-        <a class="href-link" href="#.getUserInfos">#</a>
+    <h4 class="name" id="getUserInfos">
+        <a class="href-link" href="#getUserInfos">#</a>
         
+            
+                <span class='tag'>async</span>
             
                 <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getUserInfos<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+                apiService#getUserInfos<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
             
         </span>
     </h4>
@@ -545,7 +551,7 @@
     
     
     <div class="description">
-        <p>This function will fetch data from an API and then return user information for the specified user ID.</p>
+        <p>This function will fetch data from an API or mocked data and then return user information for the specified user ID.</p>
     </div>
     
 
@@ -647,7 +653,7 @@
         <p class="tag-source">
             <a href="services_apiService.js.html" class="button">View Source</a>
             <span>
-                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line17">line 17</a>
+                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line23">line 23</a>
             </span>
         </p>
     
@@ -704,16 +710,18 @@
 
 
     
-    <h4 class="name" id=".getUserPerformance">
-        <a class="href-link" href="#.getUserPerformance">#</a>
+    <h4 class="name" id="getUserPerformance">
+        <a class="href-link" href="#getUserPerformance">#</a>
         
+            
+                <span class='tag'>async</span>
             
                 <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getUserPerformance<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+                apiService#getUserPerformance<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
             
         </span>
     </h4>
@@ -722,7 +730,7 @@
     
     
     <div class="description">
-        <p>This function will fetch data from an API and then return user performance for the specified user ID.</p>
+        <p>This function will fetch data from an API or mocked data and then return user performance for the specified user ID.</p>
     </div>
     
 
@@ -824,7 +832,7 @@
         <p class="tag-source">
             <a href="services_apiService.js.html" class="button">View Source</a>
             <span>
-                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line75">line 75</a>
+                <a href="services_apiService.js.html">services/apiService.js</a>, <a href="services_apiService.js.html#line115">line 115</a>
             </span>
         </p>
     
