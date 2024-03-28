@@ -71,7 +71,7 @@ function AveSessionsChart(props) {
         </defs>
 
         <Line
-          type="natural"
+          type="monotone"
           dataKey="sessionLength"
           stroke="url(#lineGradient)"
           fill="var(--text-color-light-1)"
