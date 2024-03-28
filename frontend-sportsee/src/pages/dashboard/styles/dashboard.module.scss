@@ -37,6 +37,7 @@
             background-color: var(--primary-color-light);
             grid-column: 1 / 2;
             grid-row: 2 / 3;
+            min-width: 300px;
         }
 
         &__performance {
@@ -44,6 +45,8 @@
             border-radius: 5px;
             grid-column: 2 / 3;
             grid-row: 2 / 3;
+            min-width: 300px;
+
         }
 
         &__score {
@@ -52,6 +55,8 @@
             padding: 25px;
             grid-column: 3 / 4;
             grid-row: 2 / 3;
+            min-width: 300px;
+
         }
     }
 
@@ -90,6 +95,18 @@
         &__section {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 300px 200px;
+
+            &__aveSessions {
+                min-width: 200px;
+            }
+    
+            &__performance {
+                min-width: 200px;
+            }
+    
+            &__score {
+                min-width: 200px;
+            }
         }
 
         aside {
@@ -126,6 +143,18 @@
         &__section {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 350px 250px;
+
+            &__aveSessions {
+                min-width: 250px;
+            }
+    
+            &__performance {
+                min-width: 250px;
+            }
+    
+            &__score {
+                min-width: 250px;
+            }
         }
 
         aside {
