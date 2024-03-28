@@ -7,14 +7,18 @@ import {
 } from '../__mocks__/data'
 
 /**
- * An object that contains a list of api services.
+ * An class that contains a list of api services.
  *
  * @category Services
  * @namespace ApiService
  */
 class apiService {
   /**
-   * This function will fetch data from an API or mocked data and then return user information for the specified user ID.
+   * This function will fetch data from an API or mock data depending on the environment,
+   * then return user information for the specified user ID.
+   *
+   * If the environment variable REACT_APP_ENVIRONMENT is set to "prod", this function will fetch data from the API.
+   * Change the value of REACT_APP_ENVIRONMENT if this function should fetch mocked data.
    *
    * @memberOf ApiService
    * @param {number} userId
@@ -42,7 +46,11 @@ class apiService {
     }
   }
   /**
-   * This function will fetch data from an API or mocked data and then return user activity for the specified user ID.
+   * This function will fetch data from an API or mock data depending on the environment,
+   * then return user activity for the specified user ID.
+   *
+   * If the environment variable REACT_APP_ENVIRONMENT is set to "prod", this function will fetch data from the API.
+   * Change the value of REACT_APP_ENVIRONMENT if this function should fetch mocked data.
    *
    * @memberOf ApiService
    * @param {number} userId
@@ -74,7 +82,11 @@ class apiService {
     }
   }
   /**
-   * This function will fetch data from an API or mocked data and then return user average sessions for the specified user ID.
+   * This function will fetch data from an API or mock data depending on the environment,
+   * then return user average sessions for the specified user ID.
+   *
+   * If the environment variable REACT_APP_ENVIRONMENT is set to "prod", this function will fetch data from the API.
+   * Change the value of REACT_APP_ENVIRONMENT if this function should fetch mocked data.
    *
    * @memberOf ApiService
    * @param {number} userId
@@ -106,7 +118,11 @@ class apiService {
     }
   }
   /**
-   * This function will fetch data from an API or mocked data and then return user performance for the specified user ID.
+   * This function will fetch data from an API or mock data depending on the environment,
+   * then return user performance for the specified user ID.
+   *
+   * If the environment variable REACT_APP_ENVIRONMENT is set to "prod", this function will fetch data from the API.
+   * Change the value of REACT_APP_ENVIRONMENT if this function should fetch mocked data.
    *
    * @memberOf ApiService
    * @param {number} userId
