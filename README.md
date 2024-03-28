@@ -100,7 +100,7 @@ Le front-end sera accessible sur le port 3001 :
 
 ### 5.2 Kanban
 
-- [Kanban avec les histoires d'utilisateurs](https://openclassrooms.notion.site/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e)
+- [Kanban avec les user stories](https://openclassrooms.notion.site/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e)
 
 ---
 
